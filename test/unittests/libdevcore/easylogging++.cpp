@@ -21,7 +21,7 @@
  * @date 2018-08-28
  */
 
-
+#if USE_EASYLOG
 #include <libdevcore/easylogging++.h>
 #include <test/tools/libutils/TestOutputHelper.h>
 #include <boost/test/unit_test.hpp>
@@ -1762,3 +1762,4 @@ BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace test
 }  // namespace dev
+#endif

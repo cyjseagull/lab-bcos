@@ -36,7 +36,9 @@
 #include <libstoragestate/StorageStateFactory.h>
 
 using namespace dev;
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 int main(int argc, char* argv[])
 {
     auto storagePath = std::string("test_storage/");

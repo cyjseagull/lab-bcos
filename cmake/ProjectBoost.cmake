@@ -58,6 +58,7 @@ ExternalProject_Add(boost
         --with-thread
         --with-serialization
         --with-program_options
+        --with-log
     LOG_BUILD 1
     INSTALL_COMMAND ""
 )
@@ -104,3 +105,7 @@ add_dependencies(Boost::Thread boost)
 add_library(Boost::program_options STATIC IMPORTED)
 set_property(TARGET Boost::program_options PROPERTY IMPORTED_LOCATION ${BOOST_LIB_DIR}/libboost_program_options${BOOST_LIBRARY_SUFFIX})
 add_dependencies(Boost::program_options boost)
+
+add_library(Boost::log STATIC IMPORTED)
+set_property(TARGET Boost::log PROPERTY IMPORTED_LOCATION ${BOOST_LIB_DIR}/libboost_log${BOOST_LIBRARY_SUFFIX})
+add_dependencies(Boost::log boost)

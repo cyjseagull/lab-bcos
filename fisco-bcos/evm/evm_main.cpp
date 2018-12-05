@@ -30,7 +30,9 @@
 #include <libexecutive/Executive.h>
 #include <libexecutive/StateFace.h>
 #include <libmptstate/MPTState.h>
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 using namespace dev;
 using namespace dev::eth;
 using namespace dev::executive;

@@ -24,6 +24,7 @@
  */
 
 #include "easylog.h"
+#if USE_EASYLOG
 #include <iostream>
 #include <string>
 #include <thread>
@@ -36,6 +37,7 @@
 #include "Guards.h"
 using namespace std;
 using namespace dev;
+
 
 struct ThreadLocalLogName
 {
@@ -87,6 +89,7 @@ string dev::ThreadContext::join(string const& _prior)
 {
     return g_logThreadContext.join(_prior);
 }
+#endif
 
 void dev::pthread_setThreadName(std::string const& _n)
 {

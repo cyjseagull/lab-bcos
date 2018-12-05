@@ -25,8 +25,9 @@
 #include <libinitializer/Initializer.h>
 #include <libinitializer/P2PInitializer.h>
 #include <stdlib.h>
-
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 
 using namespace std;
 using namespace dev;
@@ -50,7 +51,9 @@ int main(int argc, const char* argv[])
         P2PMSG_LOG(TRACE) << "Add topic periodically, now Topics[" << topics->size() - 1
                           << "]:" << topic;
         p2pService->setTopics(topics);
+#if USE_EASYLOG
         LogInitializer::logRotateByTime();
+#endif
         this_thread::sleep_for(chrono::milliseconds((rand() % 50) * 100));
     }
 

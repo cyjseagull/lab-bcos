@@ -26,7 +26,9 @@
 #include <libinitializer/Initializer.h>
 #include <libinitializer/LogInitializer.h>
 #include <clocale>
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 using namespace dev::initializer;
 void setDefaultOrCLocale()
 {
@@ -57,6 +59,8 @@ int main(int argc, const char* argv[])
     while (!exitHandler.shouldExit())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#if USE_EASYLOG
         LogInitializer::logRotateByTime();
+#endif
     }
 }

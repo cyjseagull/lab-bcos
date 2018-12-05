@@ -31,8 +31,6 @@
 #include <libp2p/Service.h>
 #include <boost/program_options.hpp>
 #include <memory>
-
-INITIALIZE_EASYLOGGINGPP
 using namespace dev;
 using namespace dev::p2p;
 using namespace dev::eth;

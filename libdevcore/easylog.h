@@ -22,20 +22,27 @@
  */
 
 #pragma once
-
+#define USE_EASYLOG 1
 #include "Common.h"
 #include "CommonData.h"
 #include "CommonIO.h"
 #include "FixedHash.h"
+#if USE_EASYLOG == 0
+#include "Log.h"
+#endif
+
+#if USE_EASYLOG
 #include "easylogging++.h"
 #include "vector_ref.h"
 #include <chrono>
 #include <ctime>
-//#include "Terminal.h"
 #include <map>
+#endif
+
 #include <string>
 namespace dev
 {
+#if USE_EASYLOG
 class ThreadContext
 {
 public:
@@ -46,22 +53,21 @@ public:
     static void pop();
     static std::string join(std::string const& _prior);
 };
+#endif
 
 void pthread_setThreadName(std::string const& _n);
 
 /// Set the current thread's log name.
 std::string getThreadName();
-}  // namespace dev
 
+#if USE_EASYLOG
 #define MY_CUSTOM_LOGGER(LEVEL) CLOG(LEVEL, "default", "fileLogger")
 #undef LOG
 #define LOG(LEVEL) CLOG(LEVEL, "default", "fileLogger")
 #undef VLOG
 #define VLOG(LEVEL) CVLOG(LEVEL, "default", "fileLogger")
 #define LOGCOMWARNING LOG(WARNING) << "common|"
-
-namespace dev
-{
+#endif
 class LogOutputStreamBase
 {
 public:
@@ -176,5 +182,4 @@ public:
 protected:
     std::stringstream m_sstr;  ///< The accrued log entry.
 };
-
 }  // namespace dev

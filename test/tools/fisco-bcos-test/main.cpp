@@ -25,7 +25,9 @@
 #include <libdevcore/easylog.h>
 #include <boost/test/included/unit_test.hpp>
 #include <boost/test/unit_test.hpp>
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 int main(int argc, const char* argv[])
 {
     auto fakeInit = [](int, char* []) -> boost::unit_test::test_suite* { return nullptr; };

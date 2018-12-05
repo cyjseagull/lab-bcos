@@ -31,8 +31,9 @@
 #include <boost/program_options.hpp>
 #include <cstdlib>
 #include <memory>
-
+#if USE_EASYLOG
 INITIALIZE_EASYLOGGINGPP
+#endif
 using namespace dev;
 using namespace dev::p2p;
 using namespace dev::eth;
