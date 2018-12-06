@@ -126,9 +126,9 @@ static bool fileExists(const char* filename)
     }()
 
 #if USE_EASYLOG
-BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
-#else
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
+#else
+BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
 #endif
 
 BOOST_AUTO_TEST_CASE(DateUtilsTest)
