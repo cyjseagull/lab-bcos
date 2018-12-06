@@ -21,6 +21,7 @@
  * @date 2018-08-28
  */
 
+#include <libdevcore/easylog.h>
 #if USE_EASYLOG
 #include <libdevcore/easylogging++.h>
 #include <test/tools/libutils/TestOutputHelper.h>
