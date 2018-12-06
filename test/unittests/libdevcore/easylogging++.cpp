@@ -124,7 +124,7 @@ static bool fileExists(const char* filename)
     }()
 
 #if FISCO_EASYLOG
-BOOST_FIXTURE_TEST_SUITE(easylogging, *utf::disabled(), EasyLoggingFixture)
+BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
 #else
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
 #endif
