@@ -20,9 +20,7 @@
  * @author: jimmyshi
  * @date 2018-08-28
  */
-
-#include <libdevcore/easylog.h>
-#if EASYLOG
+#if FISCO_EASYLOG
 #include <libdevcore/easylogging++.h>
 #include <test/tools/libutils/TestOutputHelper.h>
 #include <boost/test/unit_test.hpp>
@@ -125,8 +123,8 @@ static bool fileExists(const char* filename)
         return ssb.str();      \
     }()
 
-#if EASYLOG
-BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
+#if FISCO_EASYLOG
+BOOST_FIXTURE_TEST_SUITE(easylogging, *utf::disabled(), EasyLoggingFixture)
 #else
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
 #endif

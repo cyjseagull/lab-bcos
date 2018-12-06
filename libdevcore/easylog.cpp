@@ -24,7 +24,7 @@
  */
 
 #include "easylog.h"
-#if EASYLOG
+#if FISCO_EASYLOG
 #include <iostream>
 #include <string>
 #include <thread>
