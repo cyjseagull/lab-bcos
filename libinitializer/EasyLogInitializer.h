@@ -20,9 +20,8 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
+#if FISCO_EASYLOG
 #pragma once
-#include <libdevcore/easylog.h>
-#if USE_EASYLOG
 #include "Common.h"
 #include <libdevcore/easylog.h>
 #include <map>

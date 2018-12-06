@@ -24,38 +24,34 @@
 #include <libdevcore/easylog.h>
 #include <libethcore/CommonJS.h>
 #include <libethcore/Transaction.h>
-
-using namespace std;
-using namespace dev::eth;
-
 namespace dev
 {
 namespace rpc
 {
-Json::Value toJson(
-    Transaction const& _t, std::pair<h256, unsigned> _location, BlockNumber _blockNumber)
+Json::Value toJson(dev::eth::Transaction const& _t, std::pair<dev::h256, unsigned> _location,
+    dev::eth::BlockNumber _blockNumber)
 {
     Json::Value res;
     if (_t)
     {
-        res["hash"] = toJS(_t.sha3());
-        res["input"] = toJS(_t.data());
-        res["to"] = _t.isCreation() ? Json::Value() : toJS(_t.receiveAddress());
-        res["from"] = toJS(_t.safeSender());
-        res["gas"] = toJS(_t.gas());
-        res["gasPrice"] = toJS(_t.gasPrice());
-        res["nonce"] = toJS(_t.nonce());
-        res["value"] = toJS(_t.value());
-        res["blockHash"] = toJS(_location.first);
-        res["transactionIndex"] = toJS(_location.second);
-        res["blockNumber"] = toJS(_blockNumber);
+        res["hash"] = dev::toJS(_t.sha3());
+        res["input"] = dev::toJS(_t.data());
+        res["to"] = _t.isCreation() ? Json::Value() : dev::toJS(_t.receiveAddress());
+        res["from"] = dev::toJS(_t.safeSender());
+        res["gas"] = dev::toJS(_t.gas());
+        res["gasPrice"] = dev::toJS(_t.gasPrice());
+        res["nonce"] = dev::toJS(_t.nonce());
+        res["value"] = dev::toJS(_t.value());
+        res["blockHash"] = dev::toJS(_location.first);
+        res["transactionIndex"] = dev::toJS(_location.second);
+        res["blockNumber"] = dev::toJS(_blockNumber);
     }
     return res;
 }
 
-TransactionSkeleton toTransactionSkeleton(Json::Value const& _json)
+dev::eth::TransactionSkeleton toTransactionSkeleton(Json::Value const& _json)
 {
-    TransactionSkeleton ret;
+    dev::eth::TransactionSkeleton ret;
     if (!_json.isObject() || _json.empty())
         return ret;
 

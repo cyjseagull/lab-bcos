@@ -30,7 +30,7 @@
 #include <libexecutive/Executive.h>
 #include <libexecutive/StateFace.h>
 #include <libmptstate/MPTState.h>
-#if USE_EASYLOG
+#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
 #endif
 using namespace dev;
@@ -38,7 +38,7 @@ using namespace dev::eth;
 using namespace dev::executive;
 using namespace dev::mptstate;
 using namespace dev::blockchain;
-
+using namespace boost::property_tree;
 static void FakeBlockHeader(BlockHeader& header, EvmParams const& param)
 {
     header.setGasLimit(param.gasLimit());

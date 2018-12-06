@@ -22,7 +22,7 @@
  */
 
 #include <libdevcore/easylog.h>
-#if USE_EASYLOG
+#if EASYLOG
 #include <libdevcore/easylogging++.h>
 #include <test/tools/libutils/TestOutputHelper.h>
 #include <boost/test/unit_test.hpp>
@@ -125,7 +125,7 @@ static bool fileExists(const char* filename)
         return ssb.str();      \
     }()
 
-#if USE_EASYLOG
+#if EASYLOG
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
 #else
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())

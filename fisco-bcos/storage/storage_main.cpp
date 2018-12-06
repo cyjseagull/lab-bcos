@@ -28,7 +28,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/program_options.hpp>
-#if USE_EASYLOG
+#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
 #endif
 

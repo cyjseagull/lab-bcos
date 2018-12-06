@@ -14,7 +14,7 @@
 //  https://muflihun.github.io/easyloggingpp
 //  http://muflihun.com
 //
-
+#if EASYLOG
 #include "easylogging++.h"
 
 #if defined(AUTO_INITIALIZE_EASYLOGGINGPP)
@@ -3817,3 +3817,4 @@ const std::string VersionInfo::releaseDate(void)
 }
 
 }  // namespace el
+#endif

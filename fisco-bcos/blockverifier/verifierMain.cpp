@@ -36,7 +36,7 @@
 #include <libstoragestate/StorageStateFactory.h>
 
 using namespace dev;
-#if USE_EASYLOG
+#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
 #endif
 int main(int argc, char* argv[])

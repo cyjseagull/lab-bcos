@@ -31,13 +31,11 @@
 #include <boost/program_options.hpp>
 #include <cstdlib>
 #include <memory>
-#if USE_EASYLOG
+
+#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
 #endif
-using namespace dev;
-using namespace dev::p2p;
-using namespace dev::eth;
-namespace js = json_spirit;
+
 class Params
 {
 public:

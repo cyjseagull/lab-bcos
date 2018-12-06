@@ -20,8 +20,8 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
+#if FISCO_EASYLOG == 0
 #include "BoostLogInitializer.h"
-#if USE_EASYLOG == 0
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/log/support/date_time.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>

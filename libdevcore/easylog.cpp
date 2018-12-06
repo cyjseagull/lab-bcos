@@ -24,7 +24,7 @@
  */
 
 #include "easylog.h"
-#if USE_EASYLOG
+#if EASYLOG
 #include <iostream>
 #include <string>
 #include <thread>

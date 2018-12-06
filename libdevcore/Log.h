@@ -20,13 +20,13 @@
  * @author: yujiechen
  * @date 2018-12-04
  */
+#if FISCO_EASYLOG == 0
 #pragma once
 #include <boost/log/core.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/file.hpp>
-
 namespace dev
 {
 extern std::string const FileLogger;
@@ -45,7 +45,8 @@ enum LogLevel
     TRACE = boost::log::trivial::trace
 };
 
-#define LOG(level) \
-    BOOST_LOG_SEV(FileLoggerHandler, (boost::log::v2s_mt_posix::trivial::severity_level)(level))
-#define LOG_INFO LOG(INFO)
+#define LOG(level)                        \
+    BOOST_LOG_SEV(dev::FileLoggerHandler, \
+        (boost::log::v2s_mt_posix::trivial::severity_level)(dev::LogLevel::level))
 }  // namespace dev
+#endif

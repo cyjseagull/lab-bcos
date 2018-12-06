@@ -31,10 +31,6 @@
 #include <libp2p/Service.h>
 #include <boost/program_options.hpp>
 #include <memory>
-using namespace dev;
-using namespace dev::p2p;
-using namespace dev::eth;
-namespace js = json_spirit;
 class Params
 {
 public:

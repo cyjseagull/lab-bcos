@@ -20,10 +20,10 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
+#if FISCO_EASYLOG == 0
 #pragma once
-#include <libdevcore/easylog.h>
-#if USE_EASYLOG == 0
 #include "Common.h"
+#include <libdevcore/easylog.h>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/expressions/formatters/named_scope.hpp>

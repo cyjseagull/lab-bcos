@@ -20,9 +20,10 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
+#if FISCO_EASYLOG
 #include "EasyLogInitializer.h"
-#if USE_EASYLOG
 using namespace dev::initializer;
+
 const std::chrono::seconds LogInitializer::wakeUpDelta = std::chrono::seconds(20);
 std::chrono::system_clock::time_point LogInitializer::nextWakeUp = std::chrono::system_clock::now();
 static std::map<std::string, unsigned int> s_mlogIndex;
