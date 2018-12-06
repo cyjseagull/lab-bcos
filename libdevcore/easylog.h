@@ -22,7 +22,7 @@
  */
 
 #pragma once
-#define USE_EASYLOG 1
+#define USE_EASYLOG 0
 #include "Common.h"
 #include "CommonData.h"
 #include "CommonIO.h"
