@@ -125,7 +125,11 @@ static bool fileExists(const char* filename)
         return ssb.str();      \
     }()
 
+#if USE_EASYLOG
+BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
+#else
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
+#endif
 
 BOOST_AUTO_TEST_CASE(DateUtilsTest)
 {
