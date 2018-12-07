@@ -20,7 +20,7 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
-#if FISCO_EASYLOG == 0
+#ifndef FISCO_EASYLOG
 #pragma once
 #include "Common.h"
 #include <libdevcore/easylog.h>

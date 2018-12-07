@@ -20,7 +20,7 @@
  * @author: yujiechen
  * @date 2018-12-04
  */
-#if FISCO_EASYLOG == 0
+#ifndef FISCO_EASYLOG
 #pragma once
 #include <boost/log/core.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>

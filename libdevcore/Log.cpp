@@ -1,4 +1,4 @@
-#if FISCO_EASYLOG == 0
+#ifndef FISCO_EASYLOG
 #include "Log.h"
 namespace dev
 {

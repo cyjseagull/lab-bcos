@@ -123,13 +123,8 @@ static bool fileExists(const char* filename)
         return ssb.str();      \
     }()
 
-#if FISCO_EASYLOG
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
-#else
-BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture, *utf::disabled())
-#endif
-
-BOOST_AUTO_TEST_CASE(DateUtilsTest)
+BOOST_AUTO_TEST_CASE(DateUtilsTest, *utf::disabled)
 {
     auto f = [](unsigned long long v) {
         return DateTime::formatTime(v, base::TimestampUnit::Millisecond);
