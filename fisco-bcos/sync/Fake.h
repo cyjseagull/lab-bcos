@@ -136,7 +136,7 @@ private:
 
     BlockHeaderPtr newBlockHeader(dev::h256 _parentHash, int64_t _currentNumner)
     {
-        BlockHeaderPtr blockHeader = std::make_shared<BlockHeader>();
+        BlockHeaderPtr blockHeader = std::make_shared<dev::eth::BlockHeader>();
         blockHeader->setParentHash(_parentHash);
         blockHeader->setRoots(
             dev::sha3("transactionRoot"), dev::sha3("receiptRoot"), dev::sha3("stateRoot"));
