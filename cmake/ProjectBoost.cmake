@@ -69,6 +69,7 @@ ExternalProject_Add(boost
         --with-thread
         --with-serialization
         --with-program_options
+        --with-log
         -j${CORES}
     LOG_BUILD 1
     LOG_INSTALL 1

@@ -40,30 +40,22 @@
 #include <libsync/SyncStatus.h>
 #include <unistd.h>
 #include <ctime>
-
-using namespace dev;
-using namespace dev::blockchain;
-using namespace dev::eth;
-using namespace dev::sync;
-using namespace dev::blockverifier;
-using namespace dev::ledger;
-class FakeBlockChain : public BlockChainInterface
+class FakeBlockChain : public dev::blockchain::BlockChainInterface
 {
 public:
     FakeBlockChain()
     {
         m_blockNumber = 1;
         m_totalTransactionCount = 0;
-        bytes m_blockHeaderData = bytes();
-        bytes m_blockData = bytes();
-        BlockHeader blockHeader;
-        blockHeader.setSealer(u256(1));
+        dev::bytes m_blockHeaderData = dev::bytes();
+        dev::bytes m_blockData = dev::bytes();
+        dev::eth::BlockHeader blockHeader;
+        blockHeader.setSealer(dev::u256(1));
         blockHeader.setNumber(0);
         blockHeader.setTimestamp(0);
-        Block block;
+        dev::eth::Block block;
         block.setBlockHeader(blockHeader);
         block.encode(m_blockData);
-        /// block.decode(ref(m_blockData));
         m_blockHash[block.blockHeaderHash()] = 0;
         m_blockChain.push_back(std::make_shared<Block>(block));
     }
@@ -72,25 +64,25 @@ public:
 
     int64_t number()
     {
-        ReadGuard l(x_blockChain);
+        dev::ReadGuard l(x_blockChain);
         return m_blockChain.size() - 1;
     }
 
     std::pair<int64_t, int64_t> totalTransactionCount()
     {
-        ReadGuard l(x_blockChain);
+        dev::ReadGuard l(x_blockChain);
         return std::make_pair(m_totalTransactionCount, m_blockChain.size() - 1);
     }
 
     dev::h256 numberHash(int64_t _i)
     {
-        ReadGuard l(x_blockChain);
+        dev::ReadGuard l(x_blockChain);
         return m_blockChain[_i]->headerHash();
     }
 
     std::shared_ptr<dev::eth::Block> getBlockByHash(dev::h256 const& _blockHash) override
     {
-        ReadGuard l(x_blockChain);
+        dev::ReadGuard l(x_blockChain);
         if (m_blockHash.count(_blockHash))
             return m_blockChain[m_blockHash[_blockHash]];
         return nullptr;
@@ -99,17 +91,20 @@ public:
     {
         return LocalisedTransaction();
     }
-    dev::eth::Transaction getTxByHash(dev::h256 const& _txHash) override { return Transaction(); }
+    dev::eth::Transaction getTxByHash(dev::h256 const& _txHash) override
+    {
+        return dev::eth::Transaction();
+    }
     dev::eth::TransactionReceipt getTransactionReceiptByHash(dev::h256 const& _txHash) override
     {
-        return TransactionReceipt();
+        return dev::eth::TransactionReceipt();
     }
 
     dev::eth::LocalisedTransactionReceipt getLocalisedTxReceiptByHash(
         dev::h256 const& _txHash) override
     {
-        return LocalisedTransactionReceipt(
-            TransactionReceipt(), h256(0), h256(0), -1, Address(), Address(), -1, 0);
+        return dev::eth::LocalisedTransactionReceipt(dev::eth::TransactionReceipt(), dev::h256(0),
+            dev::h256(0), -1, dev::Address(), dev::Address(), -1, 0);
     }
 
     std::shared_ptr<dev::eth::Block> getBlockByNumber(int64_t _i) override
@@ -122,7 +117,7 @@ public:
     {
         if (block.blockHeader().number() == number() + 1)
         {
-            WriteGuard l(x_blockChain);
+            dev::WriteGuard l(x_blockChain);
             {
                 m_blockHash[block.blockHeader().hash()] = block.blockHeader().number();
                 m_blockChain.push_back(std::make_shared<Block>(block));
@@ -136,20 +131,20 @@ public:
 
     void setGroupMark(std::string const& groupMark) override {}
 
-    dev::bytes getCode(dev::Address _address) override { return bytes(); }
+    dev::bytes getCode(dev::Address _address) override { return dev::bytes(); }
 
 private:
-    std::map<h256, uint64_t> m_blockHash;
+    std::map<dev::h256, uint64_t> m_blockHash;
     std::vector<std::shared_ptr<Block>> m_blockChain;
     uint64_t m_blockNumber;
     uint64_t m_totalTransactionCount;
-    mutable SharedMutex x_blockChain;
+    mutable dev::SharedMutex x_blockChain;
 };
 
-class FakeBlockSync : public SyncInterface
+class FakeBlockSync : public dev::sync::SyncInterface
 {
 public:
-    FakeBlockSync() { m_status.state = SyncState::Idle; };
+    FakeBlockSync() { m_status.state = dev::sync::SyncState::Idle; };
     virtual ~FakeBlockSync(){};
     /// start blockSync
     void start(){};
@@ -158,29 +153,29 @@ public:
 
     /// get status of block sync
     /// @returns Synchonization status
-    SyncStatus status() const override { return m_status; };
+    dev::sync::SyncStatus status() const override { return m_status; };
     bool isSyncing() const override { return false; };
 
     /// protocol id used when register handler to p2p module
-    PROTOCOL_ID const& protocolId() const override { return m_protocolID; };
-    void setProtocolId(PROTOCOL_ID const _protocolId) override{};
+    dev::PROTOCOL_ID const& protocolId() const override { return m_protocolID; };
+    void setProtocolId(dev::PROTOCOL_ID const _protocolId) override{};
 
 private:
-    SyncStatus m_status;
-    PROTOCOL_ID m_protocolID = 0;
+    dev::sync::SyncStatus m_status;
+    dev::PROTOCOL_ID m_protocolID = 0;
 };
 
-class FakeBlockVerifier : public BlockVerifierInterface
+class FakeBlockVerifier : public dev::blockverifier::BlockVerifierInterface
 {
 public:
     FakeBlockVerifier()
     {
-        m_executiveContext = std::make_shared<ExecutiveContext>();
+        m_executiveContext = std::make_shared<dev::blockverifier::ExecutiveContext>();
         std::srand(std::time(nullptr));
     };
     virtual ~FakeBlockVerifier(){};
-    std::shared_ptr<ExecutiveContext> executeBlock(
-        dev::eth::Block& block, BlockInfo const& parentBlockInfo) override
+    std::shared_ptr<dev::blockverifier::ExecutiveContext> executeBlock(
+        dev::eth::Block& block, dev::blockverifier::BlockInfo const& parentBlockInfo) override
     {
         /// execute time: 1000
         /// usleep(1000 * (block.getTransactionSize()));
@@ -190,10 +185,11 @@ public:
     /// fake the transaction receipt of the whole block
     void fakeExecuteResult(dev::eth::Block& block)
     {
-        TransactionReceipts receipts;
+        dev::eth::TransactionReceipts receipts;
         for (unsigned index = 0; index < block.getTransactionSize(); index++)
         {
-            TransactionReceipt receipt(u256(0), u256(100), LogEntries(), u256(0), bytes(),
+            dev::eth::TransactionReceipt receipt(dev::u256(0), dev::u256(100),
+                dev::eth::LogEntries(), dev::u256(0), dev::bytes(),
                 block.transactions()[index].receiveAddress());
             receipts.push_back(receipt);
         }
@@ -209,10 +205,10 @@ public:
     }
 
 private:
-    std::shared_ptr<ExecutiveContext> m_executiveContext;
+    std::shared_ptr<dev::blockverifier::ExecutiveContext> m_executiveContext;
 };
 
-class FakeLedger : public Ledger
+class FakeLedger : public dev::ledger::Ledger
 {
 public:
     FakeLedger(std::shared_ptr<dev::p2p::P2PInterface> service, dev::GROUP_ID const& _groupId,
@@ -248,6 +244,4 @@ public:
         m_blockChain = std::make_shared<FakeBlockChain>();
         return true;
     }
-    /// init the blockSync
-    /// void initSync() override { m_sync = std::make_shared<FakeBlockSync>(); }
 };

@@ -37,6 +37,7 @@
 using namespace std;
 using namespace dev;
 
+
 struct ThreadLocalLogName
 {
     ThreadLocalLogName(std::string const& _name) { m_name.reset(new string(_name)); }
