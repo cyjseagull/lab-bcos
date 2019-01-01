@@ -14,7 +14,6 @@
 //  https://muflihun.github.io/easyloggingpp
 //  http://muflihun.com
 //
-#if FISCO_EASYLOG
 #ifndef EASYLOGGINGPP_H
 #define EASYLOGGINGPP_H
 // Compilers and C++0x/C++11 Evaluation
@@ -5002,4 +5001,3 @@ public:
 #define START_EASYLOGGINGPP(argc, argv) el::Helpers::setArgs(argc, argv)
 #endif  // defined(ELPP_UNICODE)
 #endif  // EASYLOGGINGPP_H
-#endif

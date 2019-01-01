@@ -22,25 +22,26 @@
  */
 
 #pragma once
+
 #include "Common.h"
 #include "CommonData.h"
 #include "CommonIO.h"
 #include "FixedHash.h"
-#include "Log.h"
 
+#ifdef FISCO_EASYLOG
 #include "easylogging++.h"
+#else
+#include "Log.h"
+#endif
+
 #include "vector_ref.h"
 #include <chrono>
 #include <ctime>
+//#include "Terminal.h"
 #include <map>
 #include <string>
 namespace dev
 {
-void pthread_setThreadName(std::string const& _n);
-/// Set the current thread's log name.
-std::string getThreadName();
-
-#if FISCO_EASYLOG
 class ThreadContext
 {
 public:
@@ -51,6 +52,14 @@ public:
     static void pop();
     static std::string join(std::string const& _prior);
 };
+
+void pthread_setThreadName(std::string const& _n);
+
+/// Set the current thread's log name.
+std::string getThreadName();
+}  // namespace dev
+
+#ifdef FISCO_EASYLOG
 #define MY_CUSTOM_LOGGER(LEVEL) CLOG(LEVEL, "default", "fileLogger")
 #undef LOG
 #define LOG(LEVEL) CLOG(LEVEL, "default", "fileLogger")
@@ -58,6 +67,8 @@ public:
 #define VLOG(LEVEL) CVLOG(LEVEL, "default", "fileLogger")
 #define LOGCOMWARNING LOG(WARNING) << "common|"
 #endif
+namespace dev
+{
 class LogOutputStreamBase
 {
 public:
@@ -172,4 +183,5 @@ public:
 protected:
     std::stringstream m_sstr;  ///< The accrued log entry.
 };
+
 }  // namespace dev

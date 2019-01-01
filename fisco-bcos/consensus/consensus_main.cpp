@@ -30,9 +30,7 @@
 #include <libinitializer/SecureInitializer.h>
 #include <libledger/LedgerManager.h>
 #include <libtxpool/TxPool.h>
-#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
-#endif
 using namespace dev;
 using namespace dev::ledger;
 using namespace dev::initializer;
@@ -364,9 +362,8 @@ static void createTx(
                            << boost::diagnostic_information(e) << std::endl;
             }
         }
-#if FISCO_EASYLOG
+
         LogInitializer::logRotateByTime();
-#endif
         std::this_thread::sleep_for(std::chrono::milliseconds(sleep_interval));
         count++;
     }

@@ -20,7 +20,6 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
-#ifndef FISCO_EASYLOG
 #include "BoostLogInitializer.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/log/support/date_time.hpp>
@@ -127,4 +126,3 @@ void LogInitializer::stopLogging(boost::shared_ptr<sink_t> sink)
     sink->flush();
     sink.reset();
 }
-#endif

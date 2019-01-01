@@ -20,7 +20,8 @@
  * @author: jimmyshi
  * @date 2018-08-28
  */
-#if FISCO_EASYLOG
+
+
 #include <libdevcore/easylogging++.h>
 #include <test/tools/libutils/TestOutputHelper.h>
 #include <boost/test/unit_test.hpp>
@@ -124,7 +125,8 @@ static bool fileExists(const char* filename)
     }()
 
 BOOST_FIXTURE_TEST_SUITE(easylogging, EasyLoggingFixture)
-BOOST_AUTO_TEST_CASE(DateUtilsTest, *utf::disabled)
+
+BOOST_AUTO_TEST_CASE(DateUtilsTest)
 {
     auto f = [](unsigned long long v) {
         return DateTime::formatTime(v, base::TimestampUnit::Millisecond);
@@ -1760,4 +1762,3 @@ BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace test
 }  // namespace dev
-#endif

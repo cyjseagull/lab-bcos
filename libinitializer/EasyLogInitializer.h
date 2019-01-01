@@ -20,7 +20,6 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
-#if FISCO_EASYLOG
 #pragma once
 #include "Common.h"
 #include <libdevcore/easylog.h>
@@ -67,4 +66,3 @@ private:
 };
 }  // namespace initializer
 }  // namespace dev
-#endif

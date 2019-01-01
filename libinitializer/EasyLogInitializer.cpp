@@ -20,7 +20,6 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
-#if FISCO_EASYLOG
 #include "EasyLogInitializer.h"
 using namespace dev::initializer;
 
@@ -126,4 +125,3 @@ void LogInitializer::initLog(boost::property_tree::ptree const& pt)
     el::Loggers::reconfigureLogger(fileLogger, defaultConf);
     el::Helpers::installPreRollOutCallback(rolloutHandler);
 }
-#endif

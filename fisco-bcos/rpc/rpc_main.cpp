@@ -24,9 +24,7 @@
 #include <libethcore/CommonJS.h>
 #include <librpc/Rpc.h>
 #include <librpc/SafeHttpServer.h>
-#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
-#endif
 
 using namespace dev;
 using namespace dev::rpc;

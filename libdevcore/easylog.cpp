@@ -24,7 +24,6 @@
  */
 
 #include "easylog.h"
-#if FISCO_EASYLOG
 #include <iostream>
 #include <string>
 #include <thread>
@@ -89,7 +88,6 @@ string dev::ThreadContext::join(string const& _prior)
 {
     return g_logThreadContext.join(_prior);
 }
-#endif
 
 void dev::pthread_setThreadName(std::string const& _n)
 {

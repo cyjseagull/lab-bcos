@@ -20,7 +20,6 @@
  * @author: yujiechen
  * @date 2018-11-07
  */
-#ifndef FISCO_EASYLOG
 #pragma once
 #include "Common.h"
 #include <libdevcore/easylog.h>
@@ -49,7 +48,7 @@ public:
         std::string const& channel = dev::FileLogger, std::string const& logType = "log");
     void stopLogging();
     unsigned getLogLevel(std::string const& levelStr);
-
+    static void inline logRotateByTime(){};
     static int m_currentHour;
     static int m_index;
 
@@ -59,4 +58,3 @@ private:
 };
 }  // namespace initializer
 }  // namespace dev
-#endif

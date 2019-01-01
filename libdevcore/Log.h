@@ -20,7 +20,6 @@
  * @author: yujiechen
  * @date 2018-12-04
  */
-#ifndef FISCO_EASYLOG
 #pragma once
 #include <boost/log/core.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>
@@ -45,8 +44,10 @@ enum LogLevel
     TRACE = boost::log::trivial::trace
 };
 
+#define INITIALIZE_EASYLOGGINGPP \
+    void Empty() {}
+
 #define LOG(level)                        \
     BOOST_LOG_SEV(dev::FileLoggerHandler, \
         (boost::log::v2s_mt_posix::trivial::severity_level)(dev::LogLevel::level))
 }  // namespace dev
-#endif

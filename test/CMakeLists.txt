@@ -67,7 +67,9 @@ foreach(file ${sources})
     endforeach(test_raw)
 endforeach(file)
 
-
+if(NOT EASYLOG)
+list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/unittests/libdevcore/easylogging++.cpp)
+endif()
 add_executable(test-fisco-bcos ${sources})
 
 target_include_directories(test-fisco-bcos PRIVATE ..)

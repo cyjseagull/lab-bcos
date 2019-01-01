@@ -18,7 +18,7 @@
  * @author: xingqiangbai
  * @date 2018-11-14
  */
-#include "libinitializer/LogInitializer.h"
+#include "libinitializer/Initializer.h"
 #include "libstorage/MemoryTableFactory.h"
 #include <leveldb/db.h>
 #include <libdevcore/Common.h>
@@ -28,9 +28,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/program_options.hpp>
-#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
-#endif
 
 using namespace std;
 using namespace dev;

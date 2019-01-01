@@ -31,10 +31,8 @@
 #include <boost/program_options.hpp>
 #include <cstdlib>
 #include <memory>
-
-#if FISCO_EASYLOG
 INITIALIZE_EASYLOGGINGPP
-#endif
+
 
 class Params
 {
