@@ -96,15 +96,9 @@ public:
     bool isConnected(dev::p2p::NodeID const& nodeId) const { return m_connected; }
 
 private:
-<<<<<<< HEAD
-    P2PSessionInfos m_sessionInfos;
-    std::map<NodeID, size_t> m_asyncSend;
-    std::map<NodeID, dev::network::Message::Ptr> m_asyncSendMsgs;
-=======
     dev::p2p::SessionInfos m_sessionInfos;
     std::map<dev::p2p::NodeID, size_t> m_asyncSend;
     std::map<dev::p2p::NodeID, dev::p2p::Message::Ptr> m_asyncSendMsgs;
->>>>>>> 9b53face67e2e02c18c3dadf9f003c7e8df05523
     bool m_connected;
 };
 
