@@ -19,6 +19,9 @@
 # (c) 2016-2018 fisco-dev contributors.
 #------------------------------------------------------------------------------
 file(GLOB_RECURSE sources "*.cpp" "*.h" "*.sol")
+if(NOT EASYLOG)
+    list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/unittests/libdevcore/easylogging++.cpp)
+endif()
 set(TEST_ARGS "--testpath=${CMAKE_SOURCE_DIR}/test/data")
 foreach(file ${sources})
     file(STRINGS ${file} test_list_raw REGEX "BOOST_.*TEST_(SUITE|CASE|SUITE_END)")
@@ -72,10 +75,6 @@ ProcessorCount(N)
 if(NOT N EQUAL 0)
   set(CTEST_BUILD_FLAGS -j${N})
   set(ctest_test_args ${ctest_test_args} PARALLEL_LEVEL ${N})
-endif()
-
-if(NOT EASYLOG)
-    list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/unittests/libdevcore/easylogging++.cpp)
 endif()
 add_executable(test-fisco-bcos ${sources})
 
