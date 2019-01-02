@@ -57,11 +57,11 @@ public:
         m_sessionInfos.push_back(P2PSessionInfo(nodeID, m_endpoint, topics));
     }
 
-    virtual P2PSessionInfos sessionInfos() override { return m_sessionInfos; }
-    void setSessionInfos(P2PSessionInfos& sessionInfos) { m_sessionInfos = sessionInfos; }
-    void appendSessionInfo(P2PSessionInfo const& info) { m_sessionInfos.push_back(info); }
+    virtual dev::p2p::P2PSessionInfos sessionInfos() override { return m_sessionInfos; }
+    void setSessionInfos(dev::p2p::P2PSessionInfos& sessionInfos) { m_sessionInfos = sessionInfos; }
+    void appendSessionInfo(dev::p2p::P2PSessionInfo const& info) { m_sessionInfos.push_back(info); }
     void clearSessionInfo() { m_sessionInfos.clear(); }
-    P2PSessionInfos sessionInfosByProtocolID(PROTOCOL_ID _protocolID) const
+    dev::p2p::P2PSessionInfos sessionInfosByProtocolID(PROTOCOL_ID _protocolID) const
     {
         return m_sessionInfos;
     }
@@ -96,9 +96,9 @@ public:
     bool isConnected(dev::p2p::NodeID const& nodeId) const { return m_connected; }
 
 private:
-    dev::p2p::SessionInfos m_sessionInfos;
+    dev::p2p::P2PSessionInfos m_sessionInfos;
     std::map<dev::p2p::NodeID, size_t> m_asyncSend;
-    std::map<dev::p2p::NodeID, dev::p2p::Message::Ptr> m_asyncSendMsgs;
+    std::map<dev::p2p::NodeID, dev::p2p::P2PMessage::Ptr> m_asyncSendMsgs;
     bool m_connected;
 };
 

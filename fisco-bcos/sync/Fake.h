@@ -124,7 +124,7 @@ private:
         header->encode(blockHeaderBytes);
 
         // Generate block
-        BlockPtr block = std::make_shared<Block>();
+        BlockPtr block = std::make_shared<dev::eth::Block>();
         block->setSigList(sigList(_txs.size()));
         block->setTransactions(_txs);
 
@@ -184,8 +184,8 @@ private:
     std::shared_ptr<dev::blockverifier::BlockVerifierInterface> m_blockVerifier;
 
     size_t m_totalTxCommit;
-    PROTOCOL_ID m_protocolId;
-    GROUP_ID m_groupId;
+    dev::PROTOCOL_ID m_protocolId;
+    dev::GROUP_ID m_groupId;
     unsigned m_blockGenerationInterval;
 };
 
